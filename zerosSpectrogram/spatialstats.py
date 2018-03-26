@@ -3,8 +3,7 @@ from scipy.integrate import cumtrapz
 # for R to work
 import rpy2.robjects as robjects
 from rpy2.robjects.packages import importr
-
-
+from numpy import inf
 
 def spatialStatsFromR(pos):
 
@@ -50,6 +49,36 @@ def spatialStatsFromR(pos):
 
     return radius, K, L, pcf
 
+def LFromRSpecRadius(pos, r_des):
+    # load spatstat
+    spatstat = importr('spatstat')
+
+    u_r = robjects.FloatVector(pos[:, 0])
+    v_r = robjects.FloatVector(pos[:, 1])
+
+    radius_r = robjects.FloatVector(r_des)
+
+    bounds_u = np.array([np.min(pos[:, 0]), np.max(pos[:, 0])])
+    bounds_v = np.array([np.min(pos[:, 1]), np.max(pos[:, 1])])
+
+    b_u = robjects.FloatVector(bounds_u)
+    b_v = robjects.FloatVector(bounds_v)
+
+    ppp_r = spatstat.ppp(u_r, v_r, b_u, b_v)
+
+    L_r = spatstat.Lest(ppp_r, r=radius_r)
+
+    radius = np.array(L_r[0])
+
+    Lborder = np.array(L_r[2])
+    Ltrans = np.array(L_r[3])
+    Liso = np.array(L_r[4])
+
+    L = [Lborder, Ltrans, Liso]
+
+    return radius,  L,
+
+
 def pairCorrPlanarGaf(r, L):
 
     a = 0.5*L*r**2
@@ -71,3 +100,16 @@ def ginibreGaf(r, c):
 
     rho = 1-np.exp(-c*r**2)
     return rho
+
+def computeTStatistics(radius, L):
+    # compute true GAF Lfunc
+    rho_gaf = pairCorrPlanarGaf(radius, np.pi)
+    Krho_gaf = Kfunction(radius, rho_gaf)
+    Lrho_gaf = np.sqrt(Krho_gaf/np.pi)
+
+    t2 = np.cumsum((L-Lrho_gaf)**2)
+
+    tinfty = np.zeros_like(t2)
+    for k in range(len(radius)):
+        tinfty[k] = np.linalg.norm(L[:k+1]-Lrho_gaf[:k+1], ord=inf)
+    return t2, tinfty
