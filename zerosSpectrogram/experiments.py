@@ -27,27 +27,20 @@ def demoSpectrogramWhiteNoise(base, mode='complex'):
     g = sg.gaussian(Nfft, np.sqrt((Nfft)/2/np.pi))
     g = g/g.sum()
     _, _, stft = sg.stft(w, window=g, nperseg=Nfft, noverlap=Nfft-1, return_onesided=False)
-    Sww = np.abs(stft)**2
+
+    Sww_t = np.abs(stft)**2
     print("STFT computed")
+
+    tmin = base
+    tmax = 3*base
+
+    Sww = Sww_t[:, tmin:tmax+1]
+
     # detection
-    begin = base
-    block = base
-    x = []
-    y = []
     th = 1e-14
-    print("searching for zeros...")
-    while begin < N-base:
+    y, x = extr2minth(Sww, th)
 
-        y_e, x_e = extr2minth(Sww[:, begin:begin+block], th) # on the log for greater precision?
-
-        x = x + list(x_e+begin)
-        y = y + list(y_e)
-        begin += block
-    print('finished')
-    #imshow(log(Sww[:, base:N-base]), cmap='viridis')
-    #scatter(np.array(x)-base, np.array(y), color='red', marker='s')
-
-    u = (np.array(x)-base)/np.sqrt(2*base)
+    u = (np.array(x))/np.sqrt(2*base)
     v = (np.array(y))/np.sqrt(2*base)
 
     pos = np.zeros((len(x), 2))
@@ -217,7 +210,6 @@ def demoSpectrogramSignal(SNR, duration, viz=False, shrink=True):
 
     # detection
     th = 1e-14
-
     y0, x0 = extr2minth(Sww, th)
     if shrink is True:
         # boundary conditions
