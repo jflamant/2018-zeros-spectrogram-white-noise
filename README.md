@@ -15,8 +15,14 @@ This is a library implementing time-travel equations based on incomplete scarce 
 ### Dependencies
 
 Currently, this code requires the following packages to be installed:
+- `matplotlib`
+- `numpy`
+- `scipy`
+- `seaborn`
+- `cmocean`
 
-Also to compute spatial statistics functions we need
+Spatial statistics functions rely on the use of the spatstat toolbox developed in `R`. Thus we also require
+- `r2py`
 - `R` version > 3.3.2 (https://www.r-project.org/)
 - `spatstat` version > 1.48-0 library (http://spatstat.org/)
 
