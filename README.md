@@ -1,6 +1,9 @@
-## [Project Name]
+## [Zeros of the spectrogram of white noise]
 
-This project is a template for python scientific projects. This template comes with utilities to easily setup continuous integration, project configurations and more. More details in [INSTRUCTIONS.md](INSTRUCTIONS.md).
+This companion Python project contains numerical experiments associated to the paper
+
+>Bardenet, R., Flamant, J., & Chainais, P. (2017). On the zeros of the  spectrogram of white noise. arXiv preprint arXiv:1708.00082.
+
 
 [![Build Status](https://travis-ci.org/CRIStAL-Sigma/mock_tex_paper.svg?branch=master)](https://travis-ci.org/CRIStAL-Sigma/mock_tex_paper)
 
