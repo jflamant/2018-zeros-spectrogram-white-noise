@@ -9,7 +9,7 @@ This companion Python project contains numerical experiments associated to the p
 ## Project description
 
 This Python package provides several utility functions to reproduce the figures presented in the paper.
-Three Jupyter notebooks located in `notebooks/` folder are available for this purpose:
+Three Jupyter notebooks located in the `notebooks/` folder are available for this purpose:
 
 - Figure 1 and 2: `Spectrograms of real and complex WGN.ipynb`
 - Figure 5 and 6: `Rank envelope tests.ipynb`
