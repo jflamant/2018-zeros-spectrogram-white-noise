@@ -16,6 +16,10 @@ This is a library implementing time-travel equations based on incomplete scarce 
 
 Currently, this code requires the following packages to be installed:
 
+Also to compute spatial statistics functions we need
+- `R` version > 3.3.2 (https://www.r-project.org/)
+- `spatstat` version > 1.48-0 library (http://spatstat.org/)
+
 ### Install from sources
 
 Clone this repository
