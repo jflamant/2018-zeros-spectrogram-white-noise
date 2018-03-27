@@ -1,14 +1,19 @@
 # Zeros of the spectrogram of white noise
-[![Build Status](https://travis-ci.org/CRIStAL-Sigma/mock_tex_paper.svg?branch=master)](https://travis-ci.org/CRIStAL-Sigma/mock_tex_paper)
+[![Build Status]()
 
 
 This companion Python project contains numerical experiments associated to the paper
 
->Bardenet, R., Flamant, J., & Chainais, P. (2017). On the zeros of the  spectrogram of white noise. arXiv preprint arXiv:1708.00082.
+> Bardenet, R., Flamant, J., & Chainais, P. (2017). On the zeros of the  spectrogram of white noise. arXiv preprint arXiv:1708.00082.
 
 ## Project description
 
-This is a library implementing time-travel equations based on incomplete scarce agile data. This project is used to build flux capacitors.  More information about this project can be found in my third book.
+This Python package provides several utility functions to reproduce the figures presented in the paper.
+Three Jupyter notebooks located in `notebooks/` folder are available for this purpose:
+
+- Figure 1 and 2: `Spectrograms of real and complex WGN.ipynb`
+- Figure 5 and 6: `Rank envelope tests.ipynb`
+- Figure 6 `Reconstruction.ipynb`
 
 ## Download
 
@@ -22,7 +27,7 @@ Currently, this code requires the following packages to be installed:
 - `cmocean`
 
 Spatial statistics functions rely on the use of the spatstat toolbox developed in `R`. Thus we also require
-- `r2py`
+- `rpy2` version > 2.8.5
 - `R` version > 3.3.2 (https://www.r-project.org/)
 - `spatstat` version > 1.48-0 library (http://spatstat.org/)
 
@@ -46,19 +51,3 @@ Of course, if you're in development mode and you want to install also dev packag
 ```bash
 pip install -e .
 ```
-
-## Usage examples
-
-You can import [my package] by doing
-
-```python
-import my_package as mp
-```
-
-The main functions included in this package are `x()` and `z()`. `x` receives A as argument and does X. Here is example of its usage:
-
-```python
-x(`hello`, `world`, 27, [])
-```
-
-A more detailed documentation can be found in [link].
