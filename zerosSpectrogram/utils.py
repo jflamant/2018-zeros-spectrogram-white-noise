@@ -99,12 +99,11 @@ def plotRankEnvRes(radius, k, t2, tinfty, t2_exp, tinfty_exp):
 
     ax.set_ylabel(r'$T_2$' + r'$\mathrm{-statistic}$', fontsize=lsize)
     ax.set_xlabel(r'$r_{\mathrm{max}}$', fontsize=lsize)
-    ax.set_xlim([0, radius[-1]])
-    ax.set_yticks(np.linspace(0, 0.40, 5))
-
+    ax.set_xlim([0, 4])
+    ax.set_yticks(np.linspace(0, 0.20, 5))
+    ax.set_xticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4])
     sns.despine(offset=10)
     fig.subplots_adjust(left=.25, right=0.9, bottom=0.2, top=0.97)
-
 
     fig, ax = plt.subplots(figsize=(4, 4))
     lk, = ax.plot(radius,  tinfty[k, :], color='g', alpha=1)
@@ -117,7 +116,9 @@ def plotRankEnvRes(radius, k, t2, tinfty, t2_exp, tinfty_exp):
     ax.set_xlabel(r'$r_{\mathrm{max}}$', fontsize=lsize)
     ax.set_xlim([0, radius[-1]])
     sns.despine(offset=10)
+    ax.set_xticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4])
     fig.subplots_adjust(left=.25, right=0.9, bottom=0.2, top=0.97)
+
 
 
 class ProgressBar(object):
